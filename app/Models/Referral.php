@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use App\Models\ReferralEarning;
 
 class Referral extends Model
 {
@@ -27,7 +29,9 @@ class Referral extends Model
     {
         return $this->belongsTo(Master::class, 'referrer_master_id');
     }
-
+    public function earned():HasOne{
+        return $this->hasOne(ReferralEarning::class);
+    }
     public function referredMaster(): BelongsTo
     {
         return $this->belongsTo(Master::class, 'referred_master_id');
